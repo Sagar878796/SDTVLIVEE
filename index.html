@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Channel Redirector</title>
+<style>
+  body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(135deg, #0f0f0f, #1a1a1a, #222);
+    color: #fff;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+  }
+  h1 { 
+    margin-bottom: 15px; 
+    font-size: 2em; 
+    color: #f9f9f9; 
+    text-shadow: 0 0 10px rgba(255,255,255,0.3); 
+    text-align: center;
+  }
+
+  /* Telegram Button */
+  .telegram-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    margin-bottom: 25px;
+    font-size: 1.05em;
+    font-weight: bold;
+    color: #fff;
+    background: #0088cc;
+    border: none;
+    border-radius: 30px;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0, 136, 204, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .telegram-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0, 136, 204, 0.6);
+  }
+  .telegram-btn img {
+    width: 22px;
+    height: 22px;
+  }
+
+  .channels-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 1000px;
+    padding-bottom: 80px; /* space for disclaimer on mobile */
+  }
+  .channel-card {
+    text-align: center;
+    background: rgba(34, 34, 34, 0.85);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(6px);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: pointer;
+  }
+  .channel-card:hover { 
+    transform: translateY(-8px) scale(1.03); 
+    box-shadow: 0 12px 28px rgba(0,0,0,0.8); 
+  }
+  .channel-logo { 
+    width: 120px; 
+    height: 120px; 
+    object-fit: cover; 
+    border-radius: 12px; 
+    border: 3px solid #444; 
+    transition: transform 0.3s ease; 
+  }
+  .channel-card:hover .channel-logo { 
+    transform: scale(1.08); 
+    border-color: #777; 
+  }
+  .channel-name { 
+    margin-top: 14px; 
+    font-size: 1.1em; 
+    font-weight: bold; 
+    letter-spacing: 0.5px; 
+    color: #f1f1f1; 
+  }
+
+  /* Collapsible Disclaimer */
+  .disclaimer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(20, 20, 20, 0.95);
+    border-top: 1px solid #444;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.5);
+  }
+  .disclaimer-header {
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    color: #ffcc00;
+  }
+  .disclaimer-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    font-size: 0.9em;
+    color: #bbb;
+    text-align: center;
+    padding: 0 12px;
+  }
+  .disclaimer.open .disclaimer-content {
+    max-height: 200px; /* enough space for text */
+    padding: 12px;
+  }
+
+  @media (min-width: 601px) {
+    /* On PC: always show disclaimer expanded */
+    .disclaimer-content {
+      max-height: none !important;
+      padding: 12px !important;
+    }
+    .disclaimer-header {
+      display: none; /* no toggle on PC */
+    }
+  }
+  @media (max-width: 600px) {
+    h1 { font-size: 1.5em; }
+    .channel-logo { width: 90px; height: 90px; }
+    .channel-name { font-size: 1em; }
+    .disclaimer-content { font-size: 0.75em; }
+  }
+</style>
+</head>
+    
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X8YKBLF4R0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-X8YKBLF4R0');
+</script>
+    
+<body>
+<h1>📺 Live Channel Hub</h1>
+
+<!-- Telegram Join Button -->
+<a href="https://t.me/cloudply" target="_blank" class="telegram-btn">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
+  Join our Telegram
+</a>
+<div class="channels-grid">
+
+  <div class="channel-card" onclick="redirectTo('https://69a8242ab1413a598311a728--heartfelt-lokum-35efd3.netlify.app/')">
+    <img src="https://i.postimg.cc/nzRJ94Vb/31-Gngoi-H5p-L.png" alt="JioTV+ Logo" class="channel-logo">
+    <h2 class="channel-name">Jio tv+</h2>
+  </div>
+
+  <div class="channel-card" onclick="redirectTo('https://webplay.rf.gd/sony/')">
+    <img src="https://i.postimg.cc/C5BWZ96j/sony-liv-logo.jpg" alt="SonyLiv Logo" class="channel-logo">
+    <h2 class="channel-name">SonyLiv</h2>
+  </div>
+
+  <div class="channel-card" onclick="redirectTo('https://jtvp.byethost9.com/z5/')">
+    <img src="https://i.postimg.cc/TwYPrm3d/Zee5-official-logo.jpg" alt="Zee5 SD Logo" class="channel-logo">
+    <h2 class="channel-name">Zee5</h2>
+  </div>
+
+  <div class="channel-card" onclick="redirectTo('https://streamverse.wuaze.com/fancode/')">
+    <img src="https://i.postimg.cc/Gp62DyXV/Screenshot-2025-07-13-131317-copy.png" alt="fancode Logo" class="channel-logo">
+    <h2 class="channel-name">Fancode</h2>
+  </div>
+
+  <div class="channel-card" onclick="redirectTo('https://webplay.rf.gd/sonyliv-events/')">
+    <img src="https://i.postimg.cc/tTwNq61s/Untitled-3.png" alt="Sonyliv Event Logo" class="channel-logo">
+    <h2 class="channel-name">SonyLiv Events</h2>
+  </div>
+
+  <div class="channel-card" onclick="redirectTo('http://tataplay.is-best.net/lgtv/')">
+    <img src="https://i.postimg.cc/LssKsDfp/lg-image.png" alt="lg Logo" class="channel-logo">
+    <h2 class="channel-name">LG TV</h2>
+  </div>
+
+  <div class="channel-card" onclick="redirectTo('http://tataplay.is-best.net/oxolive/')">
+    <img src="https://i.postimg.cc/Njqcxr3Z/Screenshot-2025-10-21-143159.png" alt="oxolive Logo" class="channel-logo">
+    <h2 class="channel-name">Oxolive</h2>
+  </div>
+
+</div>
+
+<!-- Collapsible Disclaimer -->
+<div class="disclaimer" id="disclaimerBox">
+  <div class="disclaimer-header" onclick="toggleDisclaimer()">
+    ⚠ Disclaimer (Tap to Expand)
+  </div>
+  <div class="disclaimer-content">
+    ⚠ We do not host or own any content. All links are publicly available on the internet,
+    and we simply aggregate and share them for easy access.
+  </div>
+</div>
+<script>
+  function redirectTo(path) {
+    window.location.href = path; // ✅ Opens in same window
+  }
+  function toggleDisclaimer() {
+    document.getElementById("disclaimerBox").classList.toggle("open");
+  }
+</script>
+     <a href='https://www.free-counters.org/'>free Counters</a> <script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=931613ec748c750001238cf8001c8d5588307721'></script>
+<script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/1469138/t/1"></script>
+</body>
+</html>
